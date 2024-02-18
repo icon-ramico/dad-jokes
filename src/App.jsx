@@ -25,7 +25,7 @@ export default function App() {
     },
   ];
   return (
-    <div id='container' style={{width: '768px', border: '1px solid black', margin: '10px auto 0'}}>
+    <div id='container'>
       <h1>Dad Jokes</h1>
       {jokes.reduceRight(
         (acc, {is_valid, ...j}, i) => (true === is_valid ? [...acc, <Joke key={i} id={i + 1} {...j} />] : acc),
