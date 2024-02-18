@@ -2,6 +2,7 @@ import Joke from './components/Jokes/Joke.jsx';
 import './style.css';
 
 export default function App() {
+  const cssClass = 'align'
   const jokes = [
     {
       joke: 'I used to be a banker, but then lost my interest.',
@@ -26,9 +27,9 @@ export default function App() {
   ];
   return (
     <div id='container'>
-      <h1>Dad Jokes</h1>
+      <h1 className={cssClass}>Dad Jokes</h1>
       {jokes.reduceRight(
-        (acc, {is_valid, ...j}, i) => (true === is_valid ? [...acc, <Joke key={i} id={i + 1} {...j} />] : acc),
+        (acc, {is_valid, ...j}, i) => (true === is_valid ? [...acc, <Joke className={cssClass} key={i} id={i + 1} {...j} />] : acc),
         []
       )}
     </div>
