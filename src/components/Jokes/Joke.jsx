@@ -1,13 +1,13 @@
 // eslint-disable-next-line react/prop-types
-export default function Joke({joke,  ...props}) {
-  console.log(props);
+export default function Joke({joke, id, rating}) {
+  const ratingString = '⭐'.repeat(rating) + '🌟'.repeat(5 - rating);
+
   return (
     <>
       <p>
-        {props.id} {joke}
+        {id} {joke}
       </p>
-      {/* eslint-disable-next-line react/prop-types */}
-      <p>{props.rating}</p>
+      <p>{ratingString}</p>
     </>
   );
 }

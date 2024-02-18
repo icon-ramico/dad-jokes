@@ -1,4 +1,5 @@
 import Joke from './components/Jokes/Joke.jsx';
+import './style.css';
 
 export default function App() {
   const jokes = [
@@ -10,7 +11,7 @@ export default function App() {
     {
       joke: "I'm affraid for the calender it's days are numbered.",
       rating: 4,
-      is_valid: false,
+      is_valid: true,
     },
     {
       joke: 'I used to be a banker, but then lost my interest.',
@@ -24,9 +25,12 @@ export default function App() {
     },
   ];
   return (
-    <div style={{width: '768px', border: '1px solid black'}}>
+    <div id='container' style={{width: '768px', border: '1px solid black', margin: '10px auto 0'}}>
       <h1>Dad Jokes</h1>
-      {jokes.reduceRight((acc, {is_valid, ...j}, i) => (is_valid ? [...acc, <Joke key={i} id={i + 1} {...j} />] : acc), [])}
+      {jokes.reduceRight(
+        (acc, {is_valid, ...j}, i) => (true === is_valid ? [...acc, <Joke key={i} id={i + 1} {...j} />] : acc),
+        []
+      )}
     </div>
   );
 }
