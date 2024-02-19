@@ -1,35 +1,27 @@
 import Joke from './components/Jokes/Joke.jsx';
 import './style.css';
+import {useState} from 'react';
 
 export default function App() {
-  const cssClass = 'align'
+  const [favorete, setFavorete] = useState(1);
+
   const jokes = [
     {
-      joke: 'I used to be a banker, but then lost my interest.',
-      rating: 3,
-      is_valid: true,
+      id: 1,
+      text: 'I used to be a banker, but then lost my interest.',
     },
-    {
-      joke: "I'm affraid for the calender it's days are numbered.",
-      rating: 4,
-      is_valid: true,
-    },
-    {
-      joke: 'I used to be a banker, but then lost my interest.',
-      rating: 3,
-      is_valid: true,
-    },
-    {
-      joke: "I'm affraid for the calender it's days are numbered.",
-      rating: 4,
-      is_valid: false,
-    },
+    {id: 2, text: "I'm affraid for the calender it's days are numbered."},
+    {id: 3, text: 'I used to be a banker, but then lost my interest.'},
+    {id: 4, text: "I'm affraid for the calender it's days are numbered."},
   ];
+  const handleFav = id => {
+    setFavorete(id);
+  };
   return (
     <div id='container'>
-      <h1 className={cssClass}>Dad Jokes</h1>
-      {jokes.reduceRight(
-        (acc, {is_valid, ...j}, i) => (true === is_valid ? [...acc, <Joke className={cssClass} key={i} id={i + 1} {...j} />] : acc),
+      <h1>Dad Jokes</h1>
+      {jokes.reduce(
+        (acc, {...j}, i) => [...acc, <Joke fav={favorete === j.id} setFav={handleFav} key={i} {...j} />],
         []
       )}
     </div>
