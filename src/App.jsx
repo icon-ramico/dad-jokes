@@ -1,3 +1,4 @@
+import JokeForm from './components/Jokes/Form/JokeForm.jsx';
 import Joke from './components/Jokes/Joke.jsx';
 import './style.css';
 import {useState} from 'react';
@@ -17,13 +18,20 @@ export default function App() {
   const handleFav = id => {
     setFavorete(id);
   };
+  const handleJokeText = (text) => {
+    console.log('new Joke', text);
+  }
   return (
     <div id='container'>
       <h1>Dad Jokes</h1>
       {jokes.reduce(
-        (acc, {...j}, i) => [...acc, <Joke fav={favorete === j.id} setFav={handleFav} key={i} {...j} />],
+        (acc, {...j}, i) => [
+          ...acc,
+          <Joke fav={favorete === j.id} setFav={handleFav} key={i} {...j} />,
+        ],
         []
       )}
+      <JokeForm submitText={handleJokeText} />
     </div>
   );
 }

@@ -13,27 +13,23 @@
   width: 100vh;
   margin: 0 auto;
 }
-#container * {
-  text-align: center;
-}
-#container *:not(:first-child) {
+
+#container .Joke:not(:first-child) {
   text-align: center;
   margin-top: 20px;
 }
-#container button {
-  width: 40px;
-  height: 40px;
-}
-.Joke {
-  border: 1px solid #000000;
-}
-#container .Joke div {
-  margin-bottom: 10px;
-  padding: 5%;
-  box-sizing: border-box;
-  /* 
-  border: 1px solid #000000;
+
+.Joke div  {
+  width: 250px;
+  height: 60px;
+  display: flex;
+  justify-items: space-between;
+  align-items: center;
   flex-direction: row;
   margin: 0 auto;
-  gap: 2px; */
+}
+.Joke button{
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
 }

@@ -5,20 +5,11 @@ export default function Joke({text, id, fav, setFav}) {
   const [dislike, setDislike] = useState(0);
 
   const handleLikes = () => {
-    const prevCB = p => ++p;
-    setLike(prevCB);
-    setLike(prevCB);
-    setLike(prevCB);
-    setLike(prevCB);
+    setLike(likes + 1);
     console.log(`Liked id ${id} total is ${likes}`);
   };
   const handleDisLikes = () => {
-    const prevCB = p => --p;
-    setDislike(prevCB);
-    setDislike(prevCB);
-    setDislike(prevCB);
-    setDislike(prevCB);
-
+    setDislike(dislike + 1);
     console.log(`Disiked id ${id} total is ${dislike}`);
   };
   const handleFavorete = () => {
@@ -31,7 +22,6 @@ export default function Joke({text, id, fav, setFav}) {
         Likes: {likes} Dislikes: {dislike}
       </p>
       <div>
-        <p>{fav}</p>
         <button onClick={handleLikes}>👍</button>
         <button onClick={handleDisLikes}>👎</button>
         <button onClick={handleFavorete}>{fav ? '💘' : '🤯'}</button>
