@@ -1,35 +1,87 @@
 import JokeForm from './components/Jokes/Form/JokeForm.jsx';
 import Joke from './components/Jokes/Joke.jsx';
 import './style.css';
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function App() {
   const [favorete, setFavorete] = useState(1);
-
-  const jokes = [
+  const [jokes, setJokes] = useState([
     {
       id: 1,
       text: 'I used to be a banker, but then lost my interest.',
+      like: 0,
     },
-    {id: 2, text: "I'm affraid for the calender it's days are numbered."},
-    {id: 3, text: 'I used to be a banker, but then lost my interest.'},
-    {id: 4, text: "I'm affraid for the calender it's days are numbered."},
-  ];
+    {
+      id: 2,
+      text: "I'm affraid for the calender it's days are numbered.",
+      like: 0,
+    },
+    {
+      id: 3,
+      text: 'I used to be a banker, but then lost my interest.',
+      like: 0,
+    },
+    {
+      id: 4,
+      text: "I'm affraid for the calender it's days are numbered.",
+      like: 0,
+    },
+  ]);
+
   const handleFav = id => {
     setFavorete(id);
   };
-  const handleJokeText = (text) => {
-    console.log('new Joke', text);
-  }
+  const handleLike = id => {
+    setJokes(
+      jokes.reduce(
+        (acc, curr) => [
+          ...acc,
+          { ...curr, like: curr.id === id ? curr.like + 1 : curr.like },
+        ],
+        [],
+      ),
+    );
+    console.table(jokes);
+  };
+  const handleDislike = id => {
+    setJokes(
+      jokes.reduce(
+        (acc, curr) => [
+          ...acc,
+          { ...curr, like: curr.id === id ? curr.like - 1 : curr.like },
+        ],
+        [],
+      ),
+    );
+    console.table(jokes);
+  };
+  const handleJokeText = text => {
+    const joke = {
+      id: self.crypto.randomUUID(),
+      text,like:0
+    };
+    setJokes([joke, ...jokes]);
+  };
+  const handleDelete = id => {
+    setJokes(jokes.filter(j => j.id !== id));
+  };
   return (
-    <div id='container'>
+    <div id="container">
       <h1>Dad Jokes</h1>
       {jokes.reduce(
-        (acc, {...j}, i) => [
+        (acc, { ...j }, i) => [
           ...acc,
-          <Joke fav={favorete === j.id} setFav={handleFav} key={i} {...j} />,
+          <Joke
+            onLike={handleLike}
+            onDislike={handleDislike}
+            onDelete={handleDelete}
+            onFav={handleFav}
+            fav={favorete === j.id}
+            key={i}
+            {...j}
+          />,
         ],
-        []
+        [],
       )}
       <JokeForm submitText={handleJokeText} />
     </div>

@@ -1,30 +1,30 @@
-import {useState} from 'react';
 // eslint-disable-next-line react/prop-types
-export default function Joke({text, id, fav, setFav}) {
-  const [likes, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
+export default function Joke({ onFav, onDelete,onLike,onDislike,...joke }) {
 
-  const handleLikes = () => {
-    setLike(likes + 1);
-    console.log(`Liked id ${id} total is ${likes}`);
+
+  const handleLike = (id) => {
+    onLike(id);
   };
-  const handleDisLikes = () => {
-    setDislike(dislike + 1);
-    console.log(`Disiked id ${id} total is ${dislike}`);
+  const handleDislike = (id) => {
+    onDislike(id);
   };
-  const handleFavorete = () => {
-    setFav(id);
+  const handleFav = () => {
+    onFav(joke.id);
+  };
+  const handleDelete = id => {
+    onDelete(id);
   };
   return (
-    <div className='Joke'>
-      <p> {text}</p>
+    <div className="Joke">
+      <p>{joke.text}</p>
       <p>
-        Likes: {likes} Dislikes: {dislike}
+        Likes: {joke.like}
       </p>
       <div>
-        <button onClick={handleLikes}>👍</button>
-        <button onClick={handleDisLikes}>👎</button>
-        <button onClick={handleFavorete}>{fav ? '💘' : '🤯'}</button>
+        <button onClick={() => handleLike(joke.id)}>👍</button>
+        <button onClick={() => handleDislike(joke.id)}>👎</button>
+        <button onClick={handleFav}>{joke.fav ? '💘' : '🤯'}</button>
+        <button onClick={() => handleDelete(joke.id)}> ❌ </button>
       </div>
     </div>
   );
