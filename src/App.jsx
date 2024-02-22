@@ -58,12 +58,16 @@ export default function App() {
   const handleJokeText = text => {
     const joke = {
       id: self.crypto.randomUUID(),
-      text,like:0
+      text,
+      like: 0,
     };
     setJokes([joke, ...jokes]);
   };
   const handleDelete = id => {
     setJokes(jokes.filter(j => j.id !== id));
+  };
+  const handleSort = () => {
+    setJokes([...jokes].sort((a, b) => b.like - a.like));
   };
   return (
     <div id="container">
@@ -76,6 +80,7 @@ export default function App() {
             onDislike={handleDislike}
             onDelete={handleDelete}
             onFav={handleFav}
+            onSort={handleSort}
             fav={favorete === j.id}
             key={i}
             {...j}

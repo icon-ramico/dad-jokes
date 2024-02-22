@@ -1,7 +1,7 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-export default function JokeForm({submitText}) {
+export default function JokeForm({ submitText }) {
   const [text, setText] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
@@ -9,8 +9,12 @@ export default function JokeForm({submitText}) {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input type='text' placeholder='Enter a Joke' onChange={e => setText(e.target.value)} />
-      <button type='submit'>Add joke</button>
+      <input
+        type="text"
+        placeholder="Enter a Joke"
+        onChange={e => setText(e.target.value)}
+      />
+      <button type="submit">Add joke</button>
     </form>
   );
 }

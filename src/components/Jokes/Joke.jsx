@@ -1,11 +1,16 @@
-// eslint-disable-next-line react/prop-types
-export default function Joke({ onFav, onDelete,onLike,onDislike,...joke }) {
-
-
-  const handleLike = (id) => {
+/* eslint-disable react/prop-types */
+export default function Joke({
+  onFav,
+  onDelete,
+  onLike,
+  onDislike,
+  onSort,
+  ...joke
+}) {
+  const handleLike = id => {
     onLike(id);
   };
-  const handleDislike = (id) => {
+  const handleDislike = id => {
     onDislike(id);
   };
   const handleFav = () => {
@@ -17,14 +22,13 @@ export default function Joke({ onFav, onDelete,onLike,onDislike,...joke }) {
   return (
     <div className="Joke">
       <p>{joke.text}</p>
-      <p>
-        Likes: {joke.like}
-      </p>
+      <p>Likes: {joke.like}</p>
       <div>
         <button onClick={() => handleLike(joke.id)}>👍</button>
         <button onClick={() => handleDislike(joke.id)}>👎</button>
         <button onClick={handleFav}>{joke.fav ? '💘' : '🤯'}</button>
         <button onClick={() => handleDelete(joke.id)}> ❌ </button>
+        <button onClick={() => onSort()}> ⏬ </button>
       </div>
     </div>
   );
