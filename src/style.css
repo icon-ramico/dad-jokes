@@ -18,18 +18,26 @@
   text-align: center;
   margin-top: 20px;
 }
-
 .Joke div  {
-  width: 250px;
+  width: 150px;
   height: 60px;
   display: flex;
-  justify-items: space-between;
-  align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 auto;
+  gap: 8px;
 }
 .Joke button{
   width: 40px;
   height: 40px;
   margin: 0 auto;
+  border-radius: 3px;
+  border-style:solid;
+  border-color: #CCC;
+
+}
+.Joke button:hover{
+  background-color: #eee;
+  border-color: #999;
+
 }

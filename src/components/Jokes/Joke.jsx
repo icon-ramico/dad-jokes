@@ -22,7 +22,7 @@ export default function Joke({
   return (
     <div className="Joke">
       <p>{joke.text}</p>
-      <p>Likes: {joke.like}</p>
+      <p style={{marginBottom:"5px"}}>Likes: {joke.like}</p>
       <div>
         <button onClick={() => handleLike(joke.id)}>👍</button>
         <button onClick={() => handleDislike(joke.id)}>👎</button>

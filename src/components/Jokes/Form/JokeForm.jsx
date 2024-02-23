@@ -8,7 +8,7 @@ export default function JokeForm({ submitText }) {
     submitText(text);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form style={{marginTop:"20px"}} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter a Joke"
