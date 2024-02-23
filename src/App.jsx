@@ -1,11 +1,14 @@
+import { useReducer } from 'react';
+import jokeReducer from './store/reducer/jokes/jokeReducer.js';
+import jokeActions from './store/reducer/jokes/actions';
+
 import JokeForm from './components/Jokes/Form/JokeForm.jsx';
 import Joke from './components/Jokes/Joke.jsx';
+
 import './style.css';
-import { useState } from 'react';
 
 export default function App() {
-  const [favorete, setFavorete] = useState(1);
-  const [jokes, setJokes] = useState([
+  const [jokes, dispatch] = useReducer(jokeReducer, [
     {
       id: 1,
       text: 'I used to be a banker, but then lost my interest.',
@@ -28,46 +31,20 @@ export default function App() {
     },
   ]);
 
-  const handleFav = id => {
-    setFavorete(id);
-  };
   const handleLike = id => {
-    setJokes(
-      jokes.reduce(
-        (acc, curr) => [
-          ...acc,
-          { ...curr, like: curr.id === id ? curr.like + 1 : curr.like },
-        ],
-        [],
-      ),
-    );
-    console.table(jokes);
+    dispatch({ type: jokeActions.LIKE_JOKE, payload: { id } });
   };
   const handleDislike = id => {
-    setJokes(
-      jokes.reduce(
-        (acc, curr) => [
-          ...acc,
-          { ...curr, like: curr.id === id ? curr.like - 1 : curr.like },
-        ],
-        [],
-      ),
-    );
-    console.table(jokes);
+    dispatch({ type: jokeActions.DISLIKE_JOKE, payload: { id } });
   };
   const handleJokeText = text => {
-    const joke = {
-      id: self.crypto.randomUUID(),
-      text,
-      like: 0,
-    };
-    setJokes([joke, ...jokes]);
+    dispatch({ type: jokeActions.ADD_JOKE, payload: { text } });
   };
   const handleDelete = id => {
-    setJokes(jokes.filter(j => j.id !== id));
+    dispatch({ type: jokeActions.DELETE_JOKE, payload: { id } });
   };
   const handleSort = () => {
-    setJokes([...jokes].sort((a, b) => b.like - a.like));
+    dispatch({ type: jokeActions.SORT_JOKES });
   };
   return (
     <div id="container">
@@ -79,9 +56,7 @@ export default function App() {
             onLike={handleLike}
             onDislike={handleDislike}
             onDelete={handleDelete}
-            onFav={handleFav}
             onSort={handleSort}
-            fav={favorete === j.id}
             key={i}
             {...j}
           />,
