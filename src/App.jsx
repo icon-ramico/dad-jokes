@@ -32,10 +32,10 @@ export default function App() {
   ]);
 
   const handleLike = id => {
-    dispatch({ type: jokeActions.LIKE_JOKE, payload: { id } });
+    dispatch({ type: jokeActions.LD_JOKE, payload: { id } });
   };
   const handleDislike = id => {
-    dispatch({ type: jokeActions.DISLIKE_JOKE, payload: { id } });
+    dispatch({ type: jokeActions.LD_JOKE, payload: { id, op: '-' } });
   };
   const handleJokeText = text => {
     dispatch({ type: jokeActions.ADD_JOKE, payload: { text } });

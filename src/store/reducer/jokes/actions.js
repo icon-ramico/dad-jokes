@@ -1,7 +1,6 @@
 export default {
   ADD_JOKE: 'ADD_JOKE',
   LIKE_JOKE: 'LIKE_JOKE',
-  DISLIKE_JOKE: 'DISLIKE_JOKE',
-  DELETE_JOKE: 'DELETE_JOKE',
+  LD_JOKE: 'LD_JOKE', // like/dislike jokes
   SORT_JOKES: 'SORT_JOKES',
 };

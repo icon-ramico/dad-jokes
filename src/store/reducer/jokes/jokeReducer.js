@@ -6,27 +6,19 @@ export default (jokes, action) => {
         ...jokes,
         { ...action.payload, id: self.crypto.randomUUID(), like: 0 },
       ];
-    case jokeActions.LIKE_JOKE:
+    case jokeActions.LD_JOKE:
       return [
         ...jokes.reduce(
           (acc, curr) => [
             ...acc,
             {
               ...curr,
-              like: action.payload.id === curr.id ? curr.like + 1 : curr.like,
-            },
-          ],
-          [],
-        ),
-      ];
-    case jokeActions.DISLIKE_JOKE:
-      return [
-        ...jokes.reduce(
-          (acc, curr) => [
-            ...acc,
-            {
-              ...curr,
-              like: action.payload.id === curr.id ? curr.like - 1 : curr.like,
+              like:
+                action.payload.id === curr.id
+                  ? '-' === action.payload.op
+                    ? curr.like - 1
+                    : curr.like + 1
+                  : curr.like,
             },
           ],
           [],
