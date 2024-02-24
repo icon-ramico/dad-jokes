@@ -1,8 +1,6 @@
 import jokeActions from './actions';
 export default (jokes, action) => {
   switch (action.type) {
-    case jokeActions.INIT:
-      return action.payload.jokes;
     case jokeActions.ADD_JOKE:
       return [
         ...jokes,

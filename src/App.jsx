@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer } from 'react';
 import jokeReducer from './store/reducer/jokes/jokeReducer.js';
 import jokeActions from './store/reducer/jokes/actions';
 
@@ -8,24 +8,28 @@ import Joke from './components/Jokes/Joke.jsx';
 import './style.css';
 
 export default function App() {
-  const [jokes = [], dispatch] = useReducer(jokeReducer, []);
-
-  useEffect(() => {
-    const promises = [];
-    for (let i = 0; i < 10; i++)
-      promises.push(
-        fetch('https://icanhazdadjoke.com/', {
-          headers: { Accept: 'application/json' },
-        }).then(d => d.json()),
-      );
-    (async () => {
-      const jokes = await Promise.all(promises);
-      dispatch({
-        type: jokeActions.INIT,
-        payload: { jokes: jokes.map(({ joke }) => ({ text: joke })) },
-      });
-    })();
-  }, []);
+  const [jokes, dispatch] = useReducer(jokeReducer, [
+    {
+      id: 1,
+      text: 'I used to be a banker, but then lost my interest.',
+      like: 0,
+    },
+    {
+      id: 2,
+      text: "I'm affraid for the calender it's days are numbered.",
+      like: 0,
+    },
+    {
+      id: 3,
+      text: 'I used to be a banker, but then lost my interest.',
+      like: 0,
+    },
+    {
+      id: 4,
+      text: "I'm affraid for the calender it's days are numbered.",
+      like: 0,
+    },
+  ]);
 
   const handleLike = id => {
     dispatch({ type: jokeActions.LD_JOKE, payload: { id } });
