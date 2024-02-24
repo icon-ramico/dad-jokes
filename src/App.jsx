@@ -11,15 +11,14 @@ export default function App() {
   const [jokes = [], dispatch] = useReducer(jokeReducer, []);
 
   useEffect(() => {
-    const promises = [];
-    for (let i = 0; i < 10; i++)
-      promises.push(
-        fetch('https://icanhazdadjoke.com/', {
-          headers: { Accept: 'application/json' },
-        }).then(d => d.json()),
-      );
     (async () => {
-      const jokes = await Promise.all(promises);
+      const jokes = await Promise.all(
+        Array(10).fill(
+          fetch('https://icanhazdadjoke.com/', {
+            headers: { Accept: 'application/json' },
+          }).then(d => d.json()),
+        ),
+      );
       dispatch({
         type: jokeActions.INIT,
         payload: { jokes: jokes.map(({ joke }) => ({ text: joke })) },
