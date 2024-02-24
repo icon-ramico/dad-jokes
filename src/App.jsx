@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const jokes = await Promise.all(
-        Array(10).fill(
+        Array.from({ length: 10 }, () =>
           fetch('https://icanhazdadjoke.com/', {
             headers: { Accept: 'application/json' },
           }).then(d => d.json()),
