@@ -50,20 +50,16 @@ export default function App() {
   return (
     <div id="container">
       <h1>Dad Jokes</h1>
-      {jokes.reduce(
-        (acc, { ...j }, i) => [
-          ...acc,
-          <Joke
-            onLike={handleLike}
-            onDislike={handleDislike}
-            onDelete={handleDelete}
-            onSort={handleSort}
-            key={i}
-            {...j}
-          />,
-        ],
-        [],
-      )}
+      {jokes.map(j => (
+        <Joke
+          onLike={handleLike}
+          onDislike={handleDislike}
+          onDelete={handleDelete}
+          onSort={handleSort}
+          key={j.id}
+          {...j}
+        />
+      ))}
       <JokeForm submitText={handleJokeText} />
     </div>
   );
