@@ -50,6 +50,7 @@ export default function App() {
   return (
     <div id="container">
       <h1>Dad Jokes</h1>
+      <JokeForm submitText={handleJokeText} />
       {jokes.map(j => (
         <Joke
           onLike={handleLike}
@@ -60,7 +61,6 @@ export default function App() {
           {...j}
         />
       ))}
-      <JokeForm submitText={handleJokeText} />
     </div>
   );
 }
