@@ -12,23 +12,27 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const jokes = await Promise.all(
-        Array.from({ length: 10 }, () =>
-          fetch('https://icanhazdadjoke.com/', {
-            headers: { Accept: 'application/json' },
-          }).then(d => d.json()),
-        ),
-      );
-      dispatch({
-        type: jokeActions.INIT,
-        payload: {
-          jokes: jokes.map(({ joke }) => ({
-            text: joke,
-            like: 0,
-            id: self.crypto.randomUUID(),
-          })),
-        },
-      });
+      try {
+        const jokes = await Promise.all(
+          Array.from({ length: 10 }, () =>
+            fetch('https://icanhazdadjoke.com/', {
+              headers: { Accept: 'application/json' },
+            }).then(d => d.json()),
+          ),
+        );
+        dispatch({
+          type: jokeActions.INIT,
+          payload: {
+            jokes: jokes.map(({ joke }) => ({
+              text: joke,
+              like: 0,
+              id: self.crypto.randomUUID(),
+            })),
+          },
+        });
+      } catch ({ message }) {
+        console.error(message);
+      }
     })();
   }, []);
 
