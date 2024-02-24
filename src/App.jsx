@@ -49,6 +49,7 @@ export default function App() {
   return (
     <div id="container">
       <h1>Dad Jokes</h1>
+      <JokeForm submitText={handleJokeText} />
       {jokes.reduce(
         (acc, { ...j }, i) => [
           ...acc,
@@ -63,7 +64,6 @@ export default function App() {
         ],
         [],
       )}
-      <JokeForm submitText={handleJokeText} />
     </div>
   );
 }
