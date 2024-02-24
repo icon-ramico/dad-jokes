@@ -21,7 +21,7 @@ export default function App() {
       );
       dispatch({
         type: jokeActions.INIT,
-        payload: { jokes: jokes.map(({ joke }) => ({ text: joke })) },
+        payload: { jokes: jokes.map(({ joke }) => ({ text: joke,like:0,id:self.crypto.randomUUID() })) },
       });
     })();
   }, []);
