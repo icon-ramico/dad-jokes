@@ -13,7 +13,7 @@
   width: 700px;
   margin: 0 auto;
 }
-#container h1{
+#container h1 {
   text-align: center;
 }
 
@@ -21,7 +21,7 @@
   text-align: center;
   margin-top: 20px;
 }
-.Joke div  {
+.Joke div {
   width: 150px;
   height: 60px;
   display: flex;
@@ -30,16 +30,15 @@
   margin: 0 auto;
   gap: 8px;
 }
-.Joke button{
+.Joke button {
   width: 40px;
   height: 40px;
   margin: 0 auto;
   border-radius: 3px;
-  border-style:solid;
-  border-color: #CCC;
-
+  border-style: solid;
+  border-color: #ccc;
 }
-.Joke button:hover{
+.Joke button:hover {
   background-color: #eee;
   border-color: #999;
 
