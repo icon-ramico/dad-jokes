@@ -54,31 +54,30 @@ export default function App() {
     setShowForm(true);
   };
 
-  
   return (
     <div id="container">
       <h1>Dad Jokes</h1>
       {showForm ? (
-      <JokeForm submitText={handleJokeText} />
-    ) : (
-      <>
-        <button onClick={handleNewForm}>Add joke</button>
-        {jokes.reduce(
-          (acc, { ...j }, i) => [
-            ...acc,
-            <Joke
-              onLike={handleLike}
-              onDislike={handleDislike}
-              onDelete={handleDelete}
-              onSort={handleSort}
-              key={i}
-              {...j}
-            />,
-          ],
-          [],
-        )}
-      </>
-    )}
+        <JokeForm submitText={handleJokeText} />
+      ) : (
+        <>
+          <button onClick={handleNewForm}>Add joke</button>
+          {jokes.reduce(
+            (acc, { ...j }, i) => [
+              ...acc,
+              <Joke
+                onLike={handleLike}
+                onDislike={handleDislike}
+                onDelete={handleDelete}
+                onSort={handleSort}
+                key={i}
+                {...j}
+              />,
+            ],
+            [],
+          )}
+        </>
+      )}
     </div>
   );
 }

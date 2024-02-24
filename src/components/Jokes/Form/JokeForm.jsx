@@ -7,17 +7,18 @@ export default function JokeForm({ submitText }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(5>text.length)
-    setError('Joke must be 5 chars long') 
-  else{
-    submitText(text)
-    setText('')
-    setError('')
-  }
- 
+    if (5 > text.length) setError('Joke must be 5 chars long');
+    else {
+      submitText(text);
+      setText('');
+      setError('');
+    }
   };
   return (
-    <form id="new_joke_form"style={{ marginTop: '20px' }} onSubmit={handleSubmit}>
+    <form
+      id="new_joke_form"
+      style={{ marginTop: '20px' }}
+      onSubmit={handleSubmit}>
       <label htmlFor="text">New Joke</label>
       <input
         id="text"
@@ -26,7 +27,7 @@ export default function JokeForm({ submitText }) {
         placeholder="Enter a Joke"
         onChange={e => setText(e.target.value)}
       />
-      {error&&<p>{error}</p>}
+      {error && <p>{error}</p>}
       <button type="submit">Add joke</button>
     </form>
   );

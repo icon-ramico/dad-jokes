@@ -45,20 +45,17 @@
   border-color: #999;
 }
 
-#new_joke_form *{
+#new_joke_form * {
   display: block;
 }
 
-
-
-
-#new_joke_form  {
+#new_joke_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#new_joke_form  > *:not(:first-child) {
+#new_joke_form > *:not(:first-child) {
   margin-top: 7px;
 }
